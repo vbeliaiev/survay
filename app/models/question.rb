@@ -3,5 +3,7 @@ class Question < ActiveRecord::Base
   has_many :variants
   has_many :selected_variants
 
+  enum type: { has_one_answer: 0, has_multiple_answers: 1, comparison: 2 }
+
   self.inheritance_column = :none
 end

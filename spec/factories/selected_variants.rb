@@ -3,6 +3,9 @@ FactoryGirl.define do
     association :attempt
     association :question
     association :variant
-    association :compare
+
+    trait :with_compare do
+      association :compare
+    end
   end
 end

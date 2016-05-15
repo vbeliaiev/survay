@@ -3,6 +3,10 @@ FactoryGirl.define do
     title { FFaker::Lorem.sentence }
     correct { [true, false].sample }
     association :question
-    association :compare
+
+    trait :with_compare do
+      association :compare
+      correct nil
+    end
   end
 end
