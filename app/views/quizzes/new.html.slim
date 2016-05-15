@@ -1,0 +1,12 @@
+.content
+  h3.pull-left Create new quiz
+  br
+  br
+  br
+  = bootstrap_form_for @quiz do |f|
+    = f.text_field :title, placeholder: 'Enter quiz title', required: true
+    = f.form_group :status, label: { text: 'Status' } do
+      .status-vars.pull-left
+        = f.radio_button :status, 0, label: 'Draft', checked: true
+        = f.radio_button :status, 1, label: 'Active'
+    = f.submit class: 'btn btn-success pull-left'

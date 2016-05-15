@@ -1,2 +1,22 @@
-h1 Quizzes#index
-p Find me in app/views/quizzes/index.html.slim
+.content.quizzes
+  h3.pull-left Quizzes:
+  - if can? :create, Quiz
+    = link_to new_quiz_path, class: 'pull-right add-new-quiz' do
+      span.glyphicon.glyphicon-plus
+      span  Add new quiz
+
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Title
+        th.status Status
+        th.created-at Created at
+    tbody
+      - @quizzes.each do |quiz|
+        tr
+          td= quiz.id
+          td= quiz.title
+          td= quiz.status
+          td= quiz.created_at.strftime('%Y-%B-%d %H:%M')
+  = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'
