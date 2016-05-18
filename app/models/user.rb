@@ -8,5 +8,16 @@ class User < ActiveRecord::Base
 
   has_many :attempts, dependent: :destroy
 
+  # Guest - not registered user
+  # Regular - registered user
+  # Admin - user with admin rights
   enum role: { guest: 0,  regular: 1, admin: 2  }
+
+  before_create :set_role
+
+  private
+
+  def set_role
+    self.role = :regular if guest?
+  end
 end
