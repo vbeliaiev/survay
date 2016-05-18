@@ -9,7 +9,11 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    redirect_to quizzes_path
+    if @quiz.save
+      redirect_to quizzes_path
+    else
+      render :new
+    end
   end
 
   private
