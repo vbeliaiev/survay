@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
-  resources :quizzes, only: [:index, :new, :create]
+  resources :quizzes, only: [:index, :show, :new, :create] do
+    resources :questions, only: [:new, :create]
+  end
+
   resources :about, only: [:index]
   resources :contacts, only: [:index]
 end

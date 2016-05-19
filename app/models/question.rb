@@ -6,4 +6,8 @@ class Question < ActiveRecord::Base
   enum type: { has_one_answer: 0, has_multiple_answers: 1, comparison: 2 }
 
   self.inheritance_column = :none
+
+  accepts_nested_attributes_for :variants
+
+  validates_presence_of :title
 end

@@ -5,12 +5,15 @@ class QuizzesController < ApplicationController
     @quizzes = Quiz.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
   end
 
+  def show
+  end
+
   def new
   end
 
   def create
     if @quiz.save
-      redirect_to quizzes_path
+      redirect_to quiz_path(@quiz)
     else
       render :new
     end

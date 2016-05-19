@@ -1,0 +1,44 @@
+.content
+  h3.pull-left Quiz
+  br
+  br
+  br
+  b Title:
+  = @quiz.title
+  br
+  b Status:
+  = @quiz.status
+  br
+  br
+  h4 Questions
+  - @quiz.questions.each do |question|
+    br
+    br
+    b Title:
+    = question.title
+    br
+    b Type:
+    = question.type
+    - question.variants.each do |variant|
+      br
+      b Variant title
+      = variant.title
+      br
+      b Correct
+      = variant.correct
+      br
+      b Compare
+      = variant.compare.try(:title)
+  - if can? :create, [@quiz, Question]
+    br
+    = link_to 'Back', quizzes_path,  class: 'btn btn-info'
+    br
+    br
+    br
+    = link_to 'Add question with one correct answer', new_quiz_question_path(@quiz, type: :has_one_answer),  class: 'btn btn-success'
+    br
+    br
+    = link_to 'Add question with multiple correct answers', new_quiz_question_path(@quiz, type: :has_multiple_answers),  class: 'btn btn-success'
+    br
+    br
+    = link_to 'Add comparison question', new_quiz_question_path(@quiz, type: :comparison),  class: 'btn btn-success'

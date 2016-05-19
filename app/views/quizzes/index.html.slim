@@ -16,7 +16,11 @@
       - @quizzes.each do |quiz|
         tr
           td= quiz.id
-          td= quiz.title
+          td
+            - if can? :show, quiz
+              = link_to quiz.title, quiz_path(quiz)
+            - else
+              = quiz.title
           td= quiz.status
           td= quiz.created_at.strftime('%Y-%B-%d %H:%M')
   = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'

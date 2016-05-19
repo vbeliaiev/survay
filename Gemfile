@@ -25,10 +25,14 @@ gem 'cancancan', '~> 1.10'
 gem 'bootstrap3-rails'
 # bootstrap forms
 gem 'bootstrap_form'
+# nested form
+gem "nested_form"
 # slim
 gem 'slim-rails', '~> 3.0', '>= 3.0.1'
+
 # pagination
 #gem 'will_paginate', '~> 3.1.0'
+
 gem 'will_paginate-bootstrap'
 
 group :development, :test do
