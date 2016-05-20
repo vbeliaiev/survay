@@ -4,5 +4,8 @@
   br
   br
   = bootstrap_form_for [@quiz, @attempt] do |f|
+    - @quiz.questions.each do |question|
+      br
+      = render partial: question.type, locals: { question: question }
     = f.submit class: 'btn btn-success pull-left'
   = link_to 'Cancel', quizzes_path,  class: 'btn btn-danger'
