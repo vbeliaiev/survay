@@ -10,10 +10,11 @@ class Ability
 
     if user.regular?
       can :read, Quiz, status: 'active'
+      can :create_attempt, Quiz
     end
 
     cannot :create_attempt, Quiz do |quiz|
-      quiz.draft? #and user hasn't finished this quiz
+      quiz.draft?
     end
   end
 end

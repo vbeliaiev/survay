@@ -19,7 +19,7 @@
         tr
           td= quiz.id
           td
-            - if can? :show, quiz
+            - if can? :create, Question
               = link_to quiz.title, quiz_path(quiz)
             - else
               = quiz.title

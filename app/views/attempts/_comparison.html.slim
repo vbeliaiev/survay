@@ -9,7 +9,7 @@
         = text_field "questions[#{question.id}][variants]", variant.id, class: 'pull-right'
         br
     .comporation-compares.pull-left
-      - question.compares.each_with_index do |compare, index|
+      - question.compares.shuffle.each_with_index do |compare, index|
         = hidden_field "questions[#{question.id}][compares]", index + 1, value: compare.id
         br
         = index + 1
