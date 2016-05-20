@@ -1,2 +1,8 @@
-h1 Contacts#index
-p Find me in app/views/contacts/index.html.slim
+.content.contact
+  h1 Contacts:
+  .contact-item.pull-left
+    .title Email:&nbsp;
+    = mail_to 'vladislav.belyaev.93@gmail.com'
+  .contact-item.pull-left
+    .title LinkedIn:&nbsp;
+    =link_to 'https://ua.linkedin.com/in/vlad-belyaev-13b16b91',  'https://ua.linkedin.com/in/vlad-belyaev-13b16b91'

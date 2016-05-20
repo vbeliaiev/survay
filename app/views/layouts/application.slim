@@ -22,8 +22,6 @@ html(lang="en")
           = link_to 'Survey', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse.pull-left
           ul.nav.navbar-nav
-            li class="#{active_item_class('welcome')}"
-              = link_to 'Home', root_path
             li class="#{active_item_class('about')}"
               = link_to 'About', about_index_path
             li class="#{active_item_class('contacts')}"
