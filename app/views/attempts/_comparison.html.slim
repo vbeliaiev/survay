@@ -1,1 +1,10 @@
 = question.title
+- question.variants.each_with_index do |variant|
+  br
+  = variant.title
+  = text_field "question[#{question.id}][variants]", variant.id
+- question.compares.each_with_index do |compare, index|
+  = hidden_field "question[#{question.id}][compares]", index, value: compare.id
+  br
+  b= index + 1
+  = compare.title
