@@ -1,2 +1,5 @@
-= question.title
-= collection_radio_buttons :question, :variant_ids, question.variants, :id, :title
+.has-one-answer
+  .a-question-title
+    = question.title
+  .a-question-answer
+    = collection_radio_buttons :question, :variant_ids, question.variants, :id, :title

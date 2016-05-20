@@ -1,2 +1,5 @@
-= question.title
-= collection_check_boxes :question, :variant_ids, question.variants, :id, :title
+.has-multiple-answer
+  .a-question-title
+    = question.title
+  .a-question-answer
+    = collection_check_boxes :question, :variant_ids, question.variants, :id, :title

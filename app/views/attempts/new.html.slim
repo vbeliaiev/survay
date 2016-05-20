@@ -1,5 +1,5 @@
-.content
-  h3.pull-left Complete this questions
+.content.attempts
+  h3.pull-left= @quiz.title
   br
   br
   br
@@ -7,5 +7,6 @@
     - @quiz.questions.each do |question|
       br
       = render partial: question.type, locals: { question: question }
+      hr
     = f.submit class: 'btn btn-success pull-left'
-  = link_to 'Cancel', quizzes_path,  class: 'btn btn-danger'
+    = link_to 'Cancel', quizzes_path,  class: 'btn btn-danger a-cancel pull-left'
