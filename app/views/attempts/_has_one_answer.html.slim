@@ -2,4 +2,4 @@
   .a-question-title
     = question.title
   .a-question-answer
-    = collection_radio_buttons "question[#{question.id}]", :variant_ids, question.variants, :id, :title
+    = collection_radio_buttons "questions[#{question.id}]", :variant_ids, question.variants, :id, :title
