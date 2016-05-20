@@ -1,11 +1,13 @@
-.content
+.content.new-question
   h3.pull-left Create new question
   br
   br
   br
+
   = bootstrap_nested_form_for [@quiz, @question] do |f|
     = f.text_field :title, placeholder: 'Enter question title', required: true
     = f.hidden_field :type, value: @question.type
+    hr
     = f.fields_for :variants do |v|
       = v.text_field :title, placeholder: 'Enter variant title', required: true
       - if @question.comparison?
@@ -14,6 +16,8 @@
       - else
         = v.check_box :correct
       = v.link_to_remove "Remove this variant"
-    = f.link_to_add "Add a variant", :variants
+      hr
+    = f.link_to_add "Add a variant", :variants, class: 'add-variant-link'
+    br
     = f.submit class: 'btn btn-success pull-left'
-  = link_to 'Cancel', quiz_path(@quiz),  class: 'btn btn-danger'
+    = link_to 'Cancel', quiz_path(@quiz),  class: 'btn btn-danger pull-right'

@@ -1,44 +1,43 @@
-.content
-  h3.pull-left Quiz
-  br
-  br
-  br
-  b Title:
-  = @quiz.title
-  br
-  b Status:
-  = @quiz.status
-  br
-  br
-  h4 Questions
-  - @quiz.questions.each do |question|
-    br
-    br
-    b Title:
-    = question.title
-    br
-    b Type:
-    = question.type
-    - question.variants.each do |variant|
+.content.questions-content
+  .questions
+    h3.pull-left Quiz
+    .quiz-info.pull-left
+      b Title: &nbsp;
+      span= @quiz.title
       br
-      b Variant title
-      = variant.title
-      br
-      b Correct
-      = variant.correct
-      br
-      b Compare
-      = variant.compare.try(:title)
-  - if can? :create, [@quiz, Question]
-    br
-    = link_to 'Back', quizzes_path,  class: 'btn btn-info'
-    br
-    br
-    br
-    = link_to 'Add question with one correct answer', new_quiz_question_path(@quiz, type: :has_one_answer),  class: 'btn btn-success'
-    br
-    br
-    = link_to 'Add question with multiple correct answers', new_quiz_question_path(@quiz, type: :has_multiple_answers),  class: 'btn btn-success'
-    br
-    br
-    = link_to 'Add comparison question', new_quiz_question_path(@quiz, type: :comparison),  class: 'btn btn-success'
+      b Status: &nbsp;
+      span= @quiz.status
+      hr
+    h3.pull-left Questions
+    .questions-list.pull-left
+      - @quiz.questions.each do |question|
+        b Title: &nbsp;
+        = question.title
+        br
+        b Type: &nbsp;
+        = question.type
+        br
+        br
+        b.variants Variants:
+        br
+        - question.variants.each do |variant|
+          b Title: &nbsp;
+          = variant.title
+          br
+          - if question.comparison?
+            b Compare: &nbsp;
+            = variant.compare.title
+          - else
+            br
+            b Correct: &nbsp;
+            = variant.correct
+          br
+          br
+        hr
+  .controll-box
+    .controll-questions.pull-right
+      h4.pull-left Add questions:
+      - if can? :create, [@quiz, Question]
+        = link_to 'With one correct answer', new_quiz_question_path(@quiz, type: :has_one_answer), class: 'btn btn-success'
+        = link_to 'With multiple correct answers', new_quiz_question_path(@quiz, type: :has_multiple_answers), class: 'btn btn-success'
+        = link_to 'Comparison', new_quiz_question_path(@quiz, type: :comparison), class: 'btn btn-success'
