@@ -1,0 +1,8 @@
+.content
+  h3.pull-left Complete this questions
+  br
+  br
+  br
+  = bootstrap_form_for [@quiz, @attempt] do |f|
+    = f.submit class: 'btn btn-success pull-left'
+  = link_to 'Cancel', quizzes_path,  class: 'btn btn-danger'

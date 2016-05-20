@@ -12,6 +12,7 @@
         th Title
         th.status Status
         th.created-at Created at
+        th
     tbody
       - @quizzes.each do |quiz|
         tr
@@ -23,4 +24,7 @@
               = quiz.title
           td= quiz.status
           td= quiz.created_at.strftime('%Y-%B-%d %H:%M')
+          td
+            - if can? :create_attempt, quiz
+              = link_to 'Take', new_quiz_attempt_path(quiz)
   = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'
