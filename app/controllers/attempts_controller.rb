@@ -7,9 +7,13 @@ class AttemptsController < ApplicationController
   end
 
   def create
+    @attempt.build_answers(params[:questions])
+    @attempt.user = current_user
+
     if @attempt.save
-      redirect_to quiz_path(@quiz)
+      redirect_to quizzes_path
     else
+      flash[:error] = 'Error in saving response'
       render :new
     end
   end
