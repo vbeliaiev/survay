@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :quizzes, only: [:index, :show, :new, :create] do
     resources :questions, only: [:new, :create]
     resources :attempts, only: [:new, :create]
+    resources :answers, only: [:index]
   end
 
   resources :about, only: [:index]

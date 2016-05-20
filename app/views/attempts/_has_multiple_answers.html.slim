@@ -1,5 +1,5 @@
 .has-multiple-answer
   .a-question-title
-    = question.title
+    b= question.title
   .a-question-answer
     = collection_check_boxes "questions[#{question.id}]", :variant_ids, question.variants, :id, :title

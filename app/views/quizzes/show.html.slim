@@ -6,7 +6,7 @@
       span= @quiz.title
       br
       b Status: &nbsp;
-      span= @quiz.status
+      span= @quiz.status.capitalize
       hr
     h3.pull-left Questions
     .questions-list.pull-left
@@ -15,7 +15,7 @@
         = question.title
         br
         b Type: &nbsp;
-        = question.type
+        = question.type.humanize
         br
         br
         b.variants Variants:
@@ -28,9 +28,8 @@
             b Compare: &nbsp;
             = variant.compare.title
           - else
-            br
             b Correct: &nbsp;
-            = variant.correct
+            = variant.correct.to_s.capitalize
           br
           br
         hr

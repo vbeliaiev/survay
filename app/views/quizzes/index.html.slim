@@ -13,6 +13,7 @@
         th.status Status
         th.created-at Created at
         th
+        th
     tbody
       - @quizzes.each do |quiz|
         tr
@@ -27,4 +28,7 @@
           td
             - if can? :create_attempt, quiz
               = link_to 'Take', new_quiz_attempt_path(quiz)
+          td
+            - if @passed_quizes.include?(quiz.id)
+              = link_to 'Get last results', quiz_answers_path(quiz)
   = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'

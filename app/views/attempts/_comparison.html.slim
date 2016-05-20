@@ -1,10 +1,17 @@
-= question.title
-- question.variants.each_with_index do |variant|
-  br
-  = variant.title
-  = text_field "questions[#{question.id}][variants]", variant.id
-- question.compares.each_with_index do |compare, index|
-  = hidden_field "questions[#{question.id}][compares]", index + 1, value: compare.id
-  br
-  b= index + 1
-  = compare.title
+.comparation
+  .a-question-title.m-b-0
+    b= question.title
+  .comparation-answer
+    .comporation-variants.pull-left
+      - question.variants.each_with_index do |variant|
+        br
+        = variant.title
+        = text_field "questions[#{question.id}][variants]", variant.id, class: 'pull-right'
+        br
+    .comporation-compares.pull-left
+      - question.compares.each_with_index do |compare, index|
+        = hidden_field "questions[#{question.id}][compares]", index + 1, value: compare.id
+        br
+        = index + 1
+        |.&nbsp;
+        = compare.title
