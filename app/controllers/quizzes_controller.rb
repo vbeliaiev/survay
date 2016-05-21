@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
 
   def index
     @quizzes = Quiz.visible(current_user).order(created_at: :desc).paginate(page: params[:page], per_page: 15)
-    @passed_quizes = current_user.attempts.pluck(:id)
+    @passed_quizes = current_user.attempts.pluck(:quiz_id)
   end
 
   def show
