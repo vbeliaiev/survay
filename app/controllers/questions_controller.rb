@@ -14,6 +14,25 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @question.update(question_params)
+      redirect_to quiz_path(@quiz)
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    if @question.destroy
+      redirect_to quiz_path(@quiz)
+    else
+      redirect_to :back
+    end
+  end
+
   protected
 
   def question_params
@@ -21,8 +40,10 @@ class QuestionsController < ApplicationController
       :title,
       :type,
       variants_attributes: [
+        :id,
         :title,
         :correct,
+        :_destroy,
         compare_attributes: :title
       ]
     )

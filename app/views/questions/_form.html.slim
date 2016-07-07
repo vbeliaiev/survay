@@ -1,0 +1,17 @@
+= bootstrap_nested_form_for [@quiz, @question] do |f|
+  = f.text_field :title, placeholder: 'Введите заголовок вопроса', label:'Заголовок вопроса', required: true
+  = f.hidden_field :type, value: @question.type
+  hr
+  = f.fields_for :variants do |v|
+    = v.text_field :title, placeholder: 'Введите заголовок ответа', label: 'Заголовок ответа', required: true
+    - if @question.comparison?
+      = v.fields_for :compare do |c|
+        = c.text_field :title, placeholder: 'Введите заголовок соответствия', label:'Заголовок соответствия', required: true
+    - else
+    = v.check_box :correct, label: 'Правильный?'
+    = v.link_to_remove "Удалить"
+    hr
+  = f.link_to_add "Добавить", :variants, class: 'add-variant-link'
+  br
+  = f.submit class: 'btn btn-success pull-left', value: 'Отправить'
+  = link_to 'Отмена', quiz_path(@quiz),  class: 'btn btn-danger pull-right'

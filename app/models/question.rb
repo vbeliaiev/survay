@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
 
   self.inheritance_column = :none
 
-  accepts_nested_attributes_for :variants
+  accepts_nested_attributes_for :variants, allow_destroy: true
 
   validates_presence_of :title
 end

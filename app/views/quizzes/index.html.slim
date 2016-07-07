@@ -1,19 +1,21 @@
 .content.quizzes
-  h3.pull-left Quizzes:
+  h3.pull-left Тесты:
   - if can? :create, Quiz
     = link_to new_quiz_path, class: 'pull-right add-new-quiz' do
       span.glyphicon.glyphicon-plus
-      span  Add new quiz
+      span  Добавить тест
 
   table.table.table-striped
     thead
       tr
         th ID
-        th Title
-        th.status Status
-        th.created-at Created at
+        th Заголовок
+        th.status Статус
+        th.created-at Дата создания
         th
-        th
+        - if current_user.admin?
+          th
+          th
     tbody
       - @quizzes.each do |quiz|
         tr
@@ -27,8 +29,10 @@
           td= quiz.created_at.strftime('%Y-%B-%d %H:%M')
           td
             - if can? :create_attempt, quiz
-              = link_to 'Take', new_quiz_attempt_path(quiz)
-          td
-            - if @passed_quizes.include?(quiz.id)
-              = link_to 'Get last results', quiz_answers_path(quiz)
-  = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'
+              = link_to 'Пройти', new_quiz_attempt_path(quiz)
+          - if current_user.admin?
+            td
+              = link_to 'Результаы', quiz_answers_path(quiz)
+            td
+              = link_to 'Редактировать', edit_quiz_path(quiz)
+  = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right', next_label: 'Дальше', previous_label: 'Назад'

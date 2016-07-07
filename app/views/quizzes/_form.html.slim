@@ -1,0 +1,8 @@
+= bootstrap_form_for @quiz do |f|
+  = f.text_field :title, placeholder: 'Введите заголовок', label: 'Заголовок', required: true
+  = f.form_group :status, label: { text: 'Статус' } do
+    .status-vars.pull-left
+      = f.radio_button :status, 0, label: 'Черновик', checked: true
+      = f.radio_button :status, 1, label: 'Активный'
+  = f.submit class: 'btn btn-success pull-left', value: 'Отправить'
+  = link_to 'Отмена', quizzes_path,  class: 'btn btn-danger pull-right'

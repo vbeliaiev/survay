@@ -1,42 +1,46 @@
 .content.questions-content
   .questions
-    h3.pull-left Quiz
+    h3.pull-left Тест
     .quiz-info.pull-left
-      b Title: &nbsp;
+      b Заголовок: &nbsp;
       span= @quiz.title
       br
-      b Status: &nbsp;
+      b Статус: &nbsp;
       span= @quiz.status.capitalize
       hr
-    h3.pull-left Questions
+    h3.pull-left Вопросы
     .questions-list.pull-left
       - @quiz.questions.each do |question|
-        b Title: &nbsp;
+        b Заголовок: &nbsp;
         = question.title
         br
-        b Type: &nbsp;
+        b Тип: &nbsp;
         = question.type.humanize
         br
         br
-        b.variants Variants:
+        b.variants Варианты:
         br
         - question.variants.each do |variant|
-          b Title: &nbsp;
+          b Заголовок: &nbsp;
           = variant.title
           br
           - if question.comparison?
-            b Compare: &nbsp;
+            b Соответствие: &nbsp;
             = variant.compare.title
           - else
-            b Correct: &nbsp;
+            b Правильный: &nbsp;
             = variant.correct.to_s.capitalize
           br
           br
+        .control-question
+          = link_to 'Редактировать', edit_quiz_question_path(@quiz, question)
+          |  |
+          = link_to 'Удалить', quiz_question_path(@quiz, question), method: :delete, 'data-confirm':'Это действие удалит предидущую историю ответов для текущего теста. Вы действительно хотите удалить вопрос?'
         hr
   .controll-box
     .controll-questions.pull-right
-      h4.pull-left Add questions:
+      h4.pull-left Добавить вопрос:
       - if can? :create, [@quiz, Question]
-        = link_to 'With one correct answer', new_quiz_question_path(@quiz, type: :has_one_answer), class: 'btn btn-success'
-        = link_to 'With multiple correct answers', new_quiz_question_path(@quiz, type: :has_multiple_answers), class: 'btn btn-success'
-        = link_to 'Comparison', new_quiz_question_path(@quiz, type: :comparison), class: 'btn btn-success'
+        = link_to 'Один правильный ответ', new_quiz_question_path(@quiz, type: :has_one_answer), class: 'btn btn-success'
+        = link_to 'Много правильных ответов', new_quiz_question_path(@quiz, type: :has_multiple_answers), class: 'btn btn-success'
+        = link_to 'Соответствие', new_quiz_question_path(@quiz, type: :comparison), class: 'btn btn-success'

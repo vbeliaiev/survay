@@ -12,6 +12,17 @@ class QuizzesController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
+  def update
+    if @quiz.update(quiz_params)
+      redirect_to quiz_path(@quiz)
+    else
+      render :edit
+    end
+  end
+
   def create
     if @quiz.save
       redirect_to quiz_path(@quiz)

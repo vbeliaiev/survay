@@ -4,6 +4,7 @@ class AttemptsController < ApplicationController
   before_action  do authorize! :create_attempt, @quiz end
 
   def new
+    @questions = @quiz.questions.shuffle
   end
 
   def create
@@ -13,7 +14,7 @@ class AttemptsController < ApplicationController
     if @attempt.save
       redirect_to quizzes_path
     else
-      flash[:error] = 'Error in saving response'
+      flash[:error] = 'Ошибка сохранения'
       render :new
     end
   end

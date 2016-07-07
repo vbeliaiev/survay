@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
-  resources :quizzes, only: [:index, :show, :new, :create] do
-    resources :questions, only: [:new, :create]
+  resources :quizzes, except: [:destroy] do
+    resources :questions, except: [:show, :index]
     resources :attempts, only: [:new, :create]
     resources :answers, only: [:index]
   end

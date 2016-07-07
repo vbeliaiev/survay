@@ -22,21 +22,17 @@ html(lang="en")
           = link_to 'Survey', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse.pull-left
           ul.nav.navbar-nav
-            li class="#{active_item_class('about')}"
-              = link_to 'About', about_index_path
-            li class="#{active_item_class('contacts')}"
-              = link_to 'Contact', contacts_path
             - if can? :read, Quiz
               li class="#{active_item_class('quizzes')}"
-                = link_to 'Quizzes', quizzes_path
+                = link_to 'Тесты', quizzes_path
         .pull-right#auth-btns
           - if current_user
             .logged-in-items
-              span.logged-in-as="Logged in as <span class='underline'>#{current_user.email}</span>".html_safe
+              span.logged-in-as="Вошел как <span class='underline'>#{current_user.email}</span>".html_safe
               = link_to '', logout_path, class: 'logout-link glyphicon glyphicon-off'
           - else
-            = link_to 'Sign in', new_session_path, class: 'btn btn-default'
-            = link_to 'Sign up', new_user_path, class: 'btn btn-success'
+            = link_to 'Зайти', new_session_path, class: 'btn btn-default'
+            = link_to 'Регистрация', new_user_path, class: 'btn btn-success'
         .flash-messages.pull-right
           = flash_messages
     .container
