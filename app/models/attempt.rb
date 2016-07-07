@@ -4,6 +4,8 @@ class Attempt < ActiveRecord::Base
   has_many   :answers, dependent: :destroy
 
   def build_answers(questions_params)
+    return if questions_params.blank?
+
     questions_params.each do |question_id, user_choice|
       compares = user_choice.fetch(:compares, {})
       selected_variants = if compares.present?

@@ -1,16 +1,15 @@
 .content.answers
-  h3= @quiz.title
   table.table.table-striped
     thead
       tr
         th Вопрос
         th Правильный ответ?
     tbody
-      -@answers.each do |answer|
+      - @answers.each do |answer|
         tr
           td= answer.question.title
           td= answer.correct
   hr
   h4.results= @total_result
   hr
-  = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right'
+  = will_paginate @answers, renderer: BootstrapPagination::Rails, class: 'pull-right'

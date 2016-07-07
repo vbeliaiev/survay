@@ -1,8 +1,10 @@
 class AnswersController < ApplicationController
+  load_and_authorize_resource :attempt
+
   def index
-    @answers = Attempt.where(user_id: current_user.id,
-                             quiz_id: params[:quiz_id]).last.answers.includes(:question).paginate(page: params[:page], per_page: 15)
-    @quiz = Quiz.find(params[:quiz_id])
+    @answers = @attempt.answers
+                       .includes(:question)
+                       .paginate(page: params[:page], per_page: 15)
     @total_result = 'Итог: ' + (@answers.count - @answers.where(correct: false).count).to_s + ' из ' + @answers.count.to_s
   end
 end

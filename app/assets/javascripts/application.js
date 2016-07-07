@@ -17,10 +17,3 @@
 //= require jquery_nested_form
 
 //= require_tree .
-
-
-$(document).on('nested:fieldRemoved', function(event){
-  // this field was just removed from the form
-  var field = event.field;
-  field.remove();
-});

@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     if @question.destroy
+      @quiz.attempts.destroy_all
       redirect_to quiz_path(@quiz)
     else
       redirect_to :back

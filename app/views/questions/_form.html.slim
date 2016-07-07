@@ -8,7 +8,7 @@
       = v.fields_for :compare do |c|
         = c.text_field :title, placeholder: 'Введите заголовок соответствия', label:'Заголовок соответствия', required: true
     - else
-    = v.check_box :correct, label: 'Правильный?'
+      = v.check_box :correct, label: 'Правильный?'
     = v.link_to_remove "Удалить"
     hr
   = f.link_to_add "Добавить", :variants, class: 'add-variant-link'

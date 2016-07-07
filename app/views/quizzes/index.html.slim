@@ -30,9 +30,9 @@
           td
             - if can? :create_attempt, quiz
               = link_to 'Пройти', new_quiz_attempt_path(quiz)
-          - if current_user.admin?
+          - if can? :read, Answer
             td
-              = link_to 'Результаы', quiz_answers_path(quiz)
+              = link_to 'Результаты', quiz_attempts_path(quiz)
             td
               = link_to 'Редактировать', edit_quiz_path(quiz)
   = will_paginate @quizzes, renderer: BootstrapPagination::Rails, class: 'pull-right', next_label: 'Дальше', previous_label: 'Назад'

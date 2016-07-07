@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :quizzes, except: [:destroy] do
     resources :questions, except: [:show, :index]
-    resources :attempts, only: [:new, :create]
+    resources :attempts, only: [:new, :create, :index]
+  end
+
+  resources :attempts, only: [] do
     resources :answers, only: [:index]
   end
 

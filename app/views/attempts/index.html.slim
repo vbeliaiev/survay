@@ -1,0 +1,18 @@
+.content.answers
+  h3= @quiz.title
+  table.table.table-striped
+    thead
+      tr
+        th Пользователь
+        th Дата ответа
+        th 
+    tbody
+      -@attempts.each do |attempt|
+        tr
+          td= attempt.user.name
+          td= attempt.created_at.strftime("%m/%d/%Y")
+          td
+            - if can? :read, Answer
+              = link_to 'Подробнее', attempt_answers_path(attempt)
+  hr
+  = will_paginate @attempts, renderer: BootstrapPagination::Rails, class: 'pull-right'

@@ -35,7 +35,7 @@
         .control-question
           = link_to 'Редактировать', edit_quiz_question_path(@quiz, question)
           |  |
-          = link_to 'Удалить', quiz_question_path(@quiz, question), method: :delete, 'data-confirm':'Это действие удалит предидущую историю ответов для текущего теста. Вы действительно хотите удалить вопрос?'
+          = link_to 'Удалить', quiz_question_path(@quiz, question), method: :delete, 'data-confirm':'Это действие удалит предыдущую историю ответов для текущего теста. Вы действительно хотите удалить вопрос?'
         hr
   .controll-box
     .controll-questions.pull-right
