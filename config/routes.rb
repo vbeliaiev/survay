@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :attempts, only: [] do
+    get :total, on: :member
     resources :answers, only: [:index]
   end
 
